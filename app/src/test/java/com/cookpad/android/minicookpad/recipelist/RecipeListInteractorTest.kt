@@ -31,6 +31,7 @@ class RecipeListInteractorTest {
                 authorName = "クックパド美"
             )
         )
+
         whenever(recipeDataSource.fetchAll(any(), any())).then {
             (it.arguments[0] as (List<RecipeEntity>) -> Unit).invoke(recipeList)
         }
@@ -65,7 +66,7 @@ class RecipeListInteractorTest {
         // then
         val argumentCaptor = argumentCaptor<Exception>()
         verify(onFailed).invoke(argumentCaptor.capture())
-        assertThat( argumentCaptor.firstValue.message).isEqualTo("fetch list failed")
+        assertThat(argumentCaptor.firstValue.message).isEqualTo("fetch list failed")
     }
 }
 
