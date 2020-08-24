@@ -9,6 +9,7 @@ class RecipeCreateViewModel : ViewModel() {
 
     val imageUri: LiveData<String> = _imageUri
 
+    fun requireImageUri(): String = requireNotNull(imageUri.value)
     fun updateImageUri(uri: String) {
         _imageUri.postValue(uri)
     }

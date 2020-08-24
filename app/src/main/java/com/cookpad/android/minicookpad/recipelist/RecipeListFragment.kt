@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.cookpad.android.minicookpad.R
 import com.cookpad.android.minicookpad.RecipeListAdapter
 import com.cookpad.android.minicookpad.databinding.FragmentRecipeListBinding
-import com.cookpad.android.minicookpad.datasource.FirebaseRecipeDataSource
+import com.cookpad.android.minicookpad.datasource.impl.FirebaseRecipeDataSource
 
 class RecipeListFragment : Fragment(), RecipeListContract.View {
 

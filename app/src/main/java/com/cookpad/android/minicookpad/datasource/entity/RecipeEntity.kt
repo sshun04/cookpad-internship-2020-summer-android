@@ -1,4 +1,4 @@
-package com.cookpad.android.minicookpad.datasource
+package com.cookpad.android.minicookpad.datasource.entity
 
 import com.google.firebase.firestore.DocumentSnapshot
 import java.security.SecureRandom
