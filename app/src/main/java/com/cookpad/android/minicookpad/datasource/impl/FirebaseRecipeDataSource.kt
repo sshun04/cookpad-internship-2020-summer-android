@@ -23,7 +23,7 @@ class FirebaseRecipeDataSource : RecipeDataSource {
         onFailed: (Throwable) -> Unit
     ) {
         db.collection("recipes").add(recipe.toMap())
-            .addOnSuccessListener { onSuccess }
+            .addOnSuccessListener { onSuccess() }
             .addOnFailureListener(onFailed)
     }
 }

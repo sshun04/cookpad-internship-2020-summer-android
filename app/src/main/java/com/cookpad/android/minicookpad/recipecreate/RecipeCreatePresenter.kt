@@ -1,6 +1,6 @@
 package com.cookpad.android.minicookpad.recipecreate
 
-class RecipeCratePresenter(
+class RecipeCreatePresenter(
     val view: RecipeCreateContract.View,
     val interactor: RecipeCreateContract.Interactor,
     val routing: RecipeCreateContract.Routing

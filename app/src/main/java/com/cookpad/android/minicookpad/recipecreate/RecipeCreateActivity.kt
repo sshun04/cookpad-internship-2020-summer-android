@@ -5,6 +5,7 @@ import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
 import android.view.MenuItem
+import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContract
 import androidx.activity.viewModels
@@ -15,7 +16,6 @@ import com.cookpad.android.minicookpad.RecipeCreateViewModel
 import com.cookpad.android.minicookpad.databinding.ActivityRecipeCreateBinding
 import com.cookpad.android.minicookpad.datasource.impl.FirebaseImageDataSource
 import com.cookpad.android.minicookpad.datasource.impl.FirebaseRecipeDataSource
-import com.google.android.material.snackbar.Snackbar
 
 class RecipeCreateActivity : AppCompatActivity(), RecipeCreateContract.View {
     private lateinit var binding: ActivityRecipeCreateBinding
@@ -30,16 +30,16 @@ class RecipeCreateActivity : AppCompatActivity(), RecipeCreateContract.View {
         }
     }
 
-    lateinit var presenter: RecipeCratePresenter
+    lateinit var presenter: RecipeCreatePresenter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityRecipeCreateBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        presenter = RecipeCratePresenter(
+        presenter = RecipeCreatePresenter(
             this,
-            RecipeCreateInteractor(FirebaseImageDataSource(), FirebaseRecipeDataSource()),
+            RecipeCreateIntaractor(FirebaseImageDataSource(), FirebaseRecipeDataSource()),
             RecipeCreateRouting(this)
         )
 
@@ -61,12 +61,12 @@ class RecipeCreateActivity : AppCompatActivity(), RecipeCreateContract.View {
 
         binding.saveButton.setOnClickListener {
             val entity = RecipeCreateContract.Recipe(
-                binding.title.text?.toString()?: "",
+                binding.title.text?.toString() ?: "",
                 viewModel.requireImageUri(),
-                listOf(
-                    binding.step1.text?.toString() ?: "",
-                    binding.step2.text?.toString() ?: "",
-                    binding.step3.text?.toString() ?: ""
+                listOfNotNull(
+                    binding.step1.text?.toString(),
+                    binding.step2.text?.toString(),
+                    binding.step3.text?.toString()
                 )
             )
 
@@ -85,11 +85,11 @@ class RecipeCreateActivity : AppCompatActivity(), RecipeCreateContract.View {
     }
 
     override fun renderSuccess() {
-
+        Toast.makeText(this, "レシピを作成しました", Toast.LENGTH_SHORT).show()
     }
 
     override fun renderError(exception: Throwable) {
-        TODO("Not yet implemented")
+        Toast.makeText(this, exception.message ?: "Unknown Error", Toast.LENGTH_SHORT).show()
     }
 
     class ImageSelector : ActivityResultContract<Unit, Uri?>() {

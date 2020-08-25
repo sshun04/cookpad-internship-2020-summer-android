@@ -4,7 +4,7 @@ import com.cookpad.android.minicookpad.datasource.ImageDataSource
 import com.cookpad.android.minicookpad.datasource.RecipeDataSource
 import com.cookpad.android.minicookpad.datasource.entity.RecipeEntity
 
-class RecipeCreateInteractor
+class RecipeCreateIntaractor
     (val imageDataSource: ImageDataSource, val recipeDataSource: RecipeDataSource) :
     RecipeCreateContract.Interactor {
 
@@ -19,7 +19,9 @@ class RecipeCreateInteractor
                 //　画像の保存に成功したらレシピをアップロード
                 val entity = recipe.translate(imagePath)
                 recipeDataSource.addRecipe(
-                    entity, onSuccess, onFailed
+                    entity,
+                    onSuccess = onSuccess,
+                    onFailed = onFailed
                 )
             },
             onFailed = onFailed

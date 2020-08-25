@@ -1,7 +1,9 @@
-package com.cookpad.android.minicookpad.recipelist
+package com.cookpad.android.minicookpad.recipelist.recipelist
 
 import com.cookpad.android.minicookpad.datasource.RecipeDataSource
 import com.cookpad.android.minicookpad.datasource.entity.RecipeEntity
+import com.cookpad.android.minicookpad.recipelist.RecipeListContract
+import com.cookpad.android.minicookpad.recipelist.RecipeListInteractor
 import com.google.common.truth.Truth.assertThat
 import com.nhaarman.mockitokotlin2.*
 import org.junit.Before
@@ -15,7 +17,10 @@ class RecipeListInteractorTest {
     @Before
     fun setup() {
         recipeDataSource = mock() // モック作成
-        interactor = RecipeListInteractor(recipeDataSource)
+        interactor =
+            RecipeListInteractor(
+                recipeDataSource
+            )
     }
 
     @Test

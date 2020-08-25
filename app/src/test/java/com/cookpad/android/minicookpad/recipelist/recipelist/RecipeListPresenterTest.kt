@@ -1,5 +1,7 @@
-package com.cookpad.android.minicookpad.recipelist
+package com.cookpad.android.minicookpad.recipelist.recipelist
 
+import com.cookpad.android.minicookpad.recipelist.RecipeListContract
+import com.cookpad.android.minicookpad.recipelist.RecipeListPresenter
 import com.nhaarman.mockitokotlin2.any
 import com.nhaarman.mockitokotlin2.mock
 import com.nhaarman.mockitokotlin2.verify
@@ -21,7 +23,12 @@ class RecipeListPresenterTest {
         routing = mock()
         view = mock()
 
-        presenter = RecipeListPresenter(view, interactor, routing)
+        presenter =
+            RecipeListPresenter(
+                view,
+                interactor,
+                routing
+            )
     }
 
 
